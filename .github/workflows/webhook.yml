@@ -14,5 +14,5 @@ jobs:
       - name: Send webhook to Flask server
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d '{"action": "test action", "author": "seceret", "ref": "ok", "timestamp": "'${{ github.event.head_commit.timestamp }}'"}' \
+          -d '{"action": "push", "author": "seceret", "ref": "ok/ok/ok", "timestamp": "'${{ github.event.head_commit.timestamp }}'"}' \
           https://3784-154-237-246-227.ngrok-free.app/webhook
