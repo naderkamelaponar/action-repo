@@ -11,8 +11,6 @@ jobs:
   send-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: setup the env vals
-      env:
       - name: Send webhook to Flask server
         run: |
           curl -X POST -H "Content-Type: application/json" \
