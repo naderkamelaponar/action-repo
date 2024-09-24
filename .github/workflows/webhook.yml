@@ -15,4 +15,4 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{"event_type": "'${{ github.event_name }}'", "author": "'${{ github.actor }}'", "ref": "'${{ github.ref }}'", "timestamp": "'${{ github.event.head_commit.timestamp }}'"}' \
-          https://3784-154-237-246-227.ngrok-free.app/webhook
+          https://3784-154-237-246-227.ngrok-free.app/webhook 
