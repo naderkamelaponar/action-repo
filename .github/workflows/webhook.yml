@@ -11,25 +11,10 @@ jobs:
   send-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup the env vals
-        env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: echo "Webhook URL is set."
-
+      - name: setup the env vals
+      env:
       - name: Send webhook to Flask server
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
-            action="push"
-            author="${{ github.actor }}"
-            ref="${{ github.ref }}"
-            timestamp="${{ github.event.head_commit.timestamp }}"
-          elif [ "${{ github.event_name }}" == "pull_request" ]; then
-            action="${{ github.event.action }}"
-            author="${{ github.actor }}"
-            ref="${{ github.event.pull_request.head.ref }}"
-            timestamp="${{ github.event.pull_request.updated_at }}"
-          fi
-
           curl -X POST -H "Content-Type: application/json" \
-          -d '{"action": "'"$action"'", "author": "'"$author"'", "ref": "'"$ref"'", "timestamp": "'"$timestamp"'"}' \
-          $WEBHOOK_URL
+          -d '{"action": "test action", "author": "seceret", "ref": "ok", "timestamp": "'${{ github.event.head_commit.timestamp }}'"}' \
+          https://3784-154-237-246-227.ngrok-free.app/webhook
