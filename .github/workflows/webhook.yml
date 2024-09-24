@@ -1,0 +1,18 @@
+name: Trigger Webhook on Push and PR
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    types: [opened, closed, synchronize]
+
+jobs:
+  send-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send webhook to Flask server
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"action": "test action", "author": "seceret", "ref": "ok", "timestamp": "'${{ github.event.head_commit.timestamp }}'"}' \
+          $WEBHOOK_URL
